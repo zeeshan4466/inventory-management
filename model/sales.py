@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
 from typing import Optional
-class Sales(BaseModel):
+class SalesQuery(BaseModel):
     start_date: Optional[date]
     end_date: Optional[date]
     product_id: Optional[int]
