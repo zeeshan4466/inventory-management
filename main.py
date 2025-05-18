@@ -22,3 +22,9 @@ try:
 except Error as e:
     print("Connection not successfull")
 
+
+# End Points
+@app.get("/inventory")
+def get_inventory():
+    cursor.execute("SELECT * FROM products")
+    return cursor.fetchall()
