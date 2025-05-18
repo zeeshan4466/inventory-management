@@ -6,6 +6,7 @@ import mysql.connector
 import os
 from mysql.connector import Error
 from model.Inventory import InventoryUpdate;
+from model.Product import Product;
 
 app = FastAPI()
 
@@ -25,6 +26,16 @@ except Error as e:
 
 
 # End Points
+
+@app.post("/products")
+def create_product(product: Product):
+    cursor.execute(
+        "INSERT INTO products (name, category, price, stock) VALUES (%s, %s, %s, %s)",
+        (product.name, product.category, product.price, product.stock)
+    )
+    db.commit()
+    return {"message": "Product created"}
+
 @app.get("/inventory")
 def get_inventory():
     cursor.execute("SELECT * FROM products")
