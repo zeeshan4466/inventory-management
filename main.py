@@ -35,3 +35,9 @@ def update_inventory(data: InventoryUpdate):
     cursor.execute("UPDATE products SET stock = %s WHERE id = %s", (data.new_stock, data.product_id))
     db.commit()
     return {"message": "Inventory updated"}
+
+
+@app.get("/inventory/low-stock")
+def low_stock():
+    cursor.execute("SELECT * FROM products WHERE stock < 10")
+    return cursor.fetchall()
