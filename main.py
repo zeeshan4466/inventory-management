@@ -5,6 +5,7 @@ from datetime import date
 import mysql.connector
 import os
 from mysql.connector import Error
+from model.Inventory import InventoryUpdate;
 
 app = FastAPI()
 
@@ -28,3 +29,9 @@ except Error as e:
 def get_inventory():
     cursor.execute("SELECT * FROM products")
     return cursor.fetchall()
+
+@app.post("/inventory/update")
+def update_inventory(data: InventoryUpdate):
+    cursor.execute("UPDATE products SET stock = %s WHERE id = %s", (data.new_stock, data.product_id))
+    db.commit()
+    return {"message": "Inventory updated"}
