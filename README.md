@@ -29,10 +29,23 @@ A lightweight backend API built with **FastAPI** and **MySQL** for managing e-co
 ```bash
 git clone https://github.com/zeeshan4466/ecommerce-admin-api.git
 cd ecommerce-admin-api
-
-2. **Install dependencies
+```
+2. **Install dependencies**
 
 ```bash
 pip install fastapi uvicorn mysql-connector-python
+```
+3. **Setup MySQL Database**
 
+- Create the database using schema.sql
+- Populate with demo_data.sql
 
+```bash
+mysql -u root -p < schema.sql
+mysql -u root -p ecommerce_db < demo_data.sql
+```
+
+4. **Run the API**
+```bash
+uvicorn main:app --reload
+```
