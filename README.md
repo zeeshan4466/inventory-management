@@ -49,3 +49,60 @@ mysql -u root -p ecommerce_db < demo_data.sql
 ```bash
 uvicorn main:app --reload
 ```
+
+
+"""
+README.md – API Endpoints
+
+## API Endpoints
+
+### Product Management
+
+- **POST /products**
+  Add a new product to inventory.
+  ```json
+  {
+    "name": "Laptop",
+    "category": "Electronics",
+    "price": 1200.0,
+    "stock": 20
+  }
+  ```
+
+- **GET /inventory**
+  Retrieve the current list of products.
+
+- **POST /inventory/update**
+  Update the stock level of a product.
+  ```json
+  {
+    "product_id": 1,
+    "new_stock": 15
+  }
+  ```
+
+- **GET /inventory/low-stock**
+  List products with stock less than 10.
+
+### Sales and Revenue
+
+- **POST /sales**
+  Retrieve sales data by date range or product ID.
+  ```json
+  {
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-03",
+    "product_id": 2
+  }
+  ```
+
+- **GET /revenue/{period}**
+  Get revenue grouped by:
+  - `daily`
+  - `weekly`
+  - `monthly`
+  - `annual`
+
+  Example:
+  `GET /revenue/daily`
+"""
