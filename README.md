@@ -51,8 +51,6 @@ uvicorn main:app --reload
 ```
 
 
-"""
-README.md – API Endpoints
 
 ## API Endpoints
 
