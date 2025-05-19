@@ -103,3 +103,36 @@ uvicorn main:app --reload
 
   Example:
   `GET /revenue/daily`
+
+
+
+## Database Schema Documentation
+
+### 1. `products` Table
+- **Purpose**: Stores the list of all products available in the store.
+- **Fields**:
+  - `id` (INT, PK, AUTO_INCREMENT): Unique identifier for the product.
+  - `name` (VARCHAR): Name of the product.
+  - `category` (VARCHAR): Category to which the product belongs.
+  - `price` (FLOAT): Price per unit of the product.
+  - `stock` (INT): Current stock available in inventory.
+
+### 2. `sales` Table
+- **Purpose**: Tracks sales transactions for products.
+- **Fields**:
+  - `id` (INT, PK, AUTO_INCREMENT): Unique identifier for each sale.
+  - `product_id` (INT, FK → products.id): Refers to the product sold.
+  - `quantity` (INT): Number of units sold.
+  - `amount` (FLOAT): Total sale amount.
+  - `date` (DATE): Date the sale occurred.
+
+### Relationships
+- `sales.product_id` references `products.id`. This establishes a **foreign key relationship**, ensuring each sale is linked to a valid product.
+
+### Indexing
+- Primary keys are automatically indexed.
+- You may add indexes on:
+  - `sales.date` for faster revenue queries.
+  - `products.category` for category-based filtering.
+
+
