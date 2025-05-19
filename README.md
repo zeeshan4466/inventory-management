@@ -103,4 +103,3 @@ uvicorn main:app --reload
 
   Example:
   `GET /revenue/daily`
-"""
